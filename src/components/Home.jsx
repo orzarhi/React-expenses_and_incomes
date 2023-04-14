@@ -14,8 +14,8 @@ export const Home = () => {
 			<div className="flex justify-center p-10">
 				<img src={financialProfit} className="w-36" />
 			</div>
-			<div className="flex justify-center p-5 sm:mr-10">
-				<span className="text-2xl text-white ">
+			<div className="flex justify-center p-5">
+				<span className="text-2xl text-white sm:text-lg">
 					מעקב מלא אחר ההוצאות וההכנסות שלך.
 				</span>
 			</div>

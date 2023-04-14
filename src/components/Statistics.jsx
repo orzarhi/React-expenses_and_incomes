@@ -66,7 +66,7 @@ export const Statistics = () => {
 							</div>
 						</>
 					) : (
-						<div className="flex justify-center p-6 sm:mr-0">
+						<div className="flex justify-center p-6 sm:-mr-2">
 							<span className="text-2xl text-white sm:text-lg">
 								כרגע המצב מצוין, את/ה ביתרה על סך:
 								<span className="text-green">
