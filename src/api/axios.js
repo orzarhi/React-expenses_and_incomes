@@ -7,7 +7,7 @@ import { tokenStorage } from "~/services/localStorage";
 const token = tokenStorage.get();
 
 export default axios.create({
-	baseURL: "http://localhost:5000/api",
+	baseURL: "https://api-expenses-and-incomes.onrender.com/api",
 	headers: {
 		"Content-type": "application/json",
 		token,
