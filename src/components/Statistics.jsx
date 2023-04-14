@@ -4,7 +4,7 @@ import { useExpenses } from "~/hooks/useExpense";
 import { useIncomes } from "~/hooks/useIncome";
 import { Spinner } from "./ui/Spinner";
 import { Header } from "./Header";
-import { ChartBar } from "./chartBar/ChartBar";
+import { ChartBar } from "./chartBar";
 import { highestAmount } from "../logic/highestAmount";
 
 export const Statistics = () => {
