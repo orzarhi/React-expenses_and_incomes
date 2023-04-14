@@ -77,7 +77,9 @@ export const Form = (props) => {
 			onSubmit={submitHandler}
 		>
 			{title === "add" ? (
-				<span className="text-2xl">חבל, יכלת לחסוך את זה. 😜</span>
+				<span className="text-2xl sm:text-base">
+					חבל, יכלת לחסוך את זה. 😜
+				</span>
 			) : (
 				<span className="text-2xl">עריכת הוצאה</span>
 			)}

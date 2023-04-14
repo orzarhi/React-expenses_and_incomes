@@ -76,7 +76,10 @@ export const Form = (props) => {
 			onSubmit={submitHandler}
 		>
 			{title === "add" ? (
-				<span className="text-2xl"> שרק נמשיך ככה - כל הכבוד!</span>
+				<span className="text-2xl sm:text-base">
+					{" "}
+					שרק נמשיך ככה - כל הכבוד!
+				</span>
 			) : (
 				<span className="text-2xl">עריכת הכנסה</span>
 			)}

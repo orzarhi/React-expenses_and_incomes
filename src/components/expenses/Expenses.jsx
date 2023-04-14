@@ -119,7 +119,7 @@ export const Expenses = () => {
 				</div>
 			) : (
 				<div className="flex justify-center mt-8">
-					<span className="text-2xl text-red-lite">
+					<span className="text-2xl text-red-lite sm:text-lg">
 						לא נמצאו הוצאות קיימות, זה הזמן להתחיל לבזבז.
 					</span>
 				</div>

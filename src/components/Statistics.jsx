@@ -38,8 +38,8 @@ export const Statistics = () => {
 		<>
 			<Header />
 			{expenses.length <= 0 ? (
-				<div className="flex justify-center mt-20 ">
-					<span className="text-2xl text-white ">
+				<div className="flex justify-center mt-20 sm:mr-2">
+					<span className="text-2xl text-white sm:text-base">
 						אין כרגע נתונים על מנת לבצע חישובים וסטטיסטיקות, הגיע
 						הזמן להתחיל לבזבז או לעבוד 🤷‍♂️.
 					</span>
@@ -47,15 +47,15 @@ export const Statistics = () => {
 			) : (
 				<>
 					<div className="flex justify-center mt-20 sm:mr-4">
-						<span className="text-2xl text-white ">
+						<span className="text-2xl text-white sm:text-lg">
 							אז אם הגעת לכאן את/ה בטח רוצה לדעת איך נמשיך את המשך
 							החודש.
 						</span>
 					</div>
 					{totalExpenses > 0 ? (
 						<>
-							<div className="flex justify-center p-6 sm:mr-0">
-								<span className="text-2xl text-white">
+							<div className="flex justify-center p-6 sm:-mr-2">
+								<span className="text-2xl text-white sm:text-lg">
 									נכון לעכשיו המצב פחות טוב, את/ה חורג ב:
 									<span className="text-red">
 										{" "}
@@ -67,7 +67,7 @@ export const Statistics = () => {
 						</>
 					) : (
 						<div className="flex justify-center p-6 sm:mr-0">
-							<span className="text-2xl text-white">
+							<span className="text-2xl text-white sm:text-lg">
 								כרגע המצב מצוין, את/ה ביתרה על סך:
 								<span className="text-green">
 									{" "}
@@ -79,7 +79,7 @@ export const Statistics = () => {
 					)}
 					<div className="grid m-24 sm:mr-4">
 						{expenses?.length > 0 && (
-							<span className="mb-3 text-xl text-white">
+							<span className="mb-3 text-xl text-white sm:text-lg">
 								ההוצאה הגבוהה ביותר:{" "}
 								<span className="text-red">
 									₪{highestAmount(expenses)}
@@ -87,9 +87,9 @@ export const Statistics = () => {
 							</span>
 						)}
 						{incomes?.length > 0 && (
-							<span className="text-xl text-white">
+							<span className="text-xl text-white sm:text-lg">
 								ההכנסה הגבוהה ביותר:{" "}
-								<span className="text-green">
+								<span className="text-green ">
 									₪{highestAmount(incomes)}
 								</span>
 							</span>

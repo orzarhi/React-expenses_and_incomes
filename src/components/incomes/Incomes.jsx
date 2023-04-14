@@ -118,7 +118,7 @@ export const Incomes = () => {
 				</div>
 			) : (
 				<div className="flex justify-center mt-8">
-					<span className="text-2xl text-red-lite">
+					<span className="text-2xl text-red-lite sm:text-lg">
 						לא נמצאו הכנסות קיימות, זה הזמן להתחיל לעבוד.
 					</span>
 				</div>
