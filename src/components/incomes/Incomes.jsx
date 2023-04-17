@@ -69,7 +69,7 @@ export const Incomes = () => {
 				<div className="grid justify-between grid-cols-4 gap-2 p-8 mt-10 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
 					{data.map((income) => (
 						<div
-							className="w-4/5 max-w-sm p-6 m-3 text-center duration-300 border shadow-lg animate-[wiggle_2s_ease-in-out_infinite] hover:animate-[wiggle_0s_ease-in-out_infinite] hover:-translate-y-1 hover:scale-100 shadow-green bg-gray-light border-gray rounded-t-3xl hover:shadow-black xl:w-full lg:w-11/12"
+							className="w-4/5 max-w-sm p-6 m-3 text-center duration-300 border shadow-lg animate-[wiggle_2s_ease-in-out_infinite] hover:animate-[wiggle_0s_ease-in-out_infinite] hover:-translate-y-1 hover:scale-100 shadow-green bg-gray-light border-gray rounded-t-3xl hover:shadow-black xl:w-full lg:w-11/12 vsm:w-full"
 							key={income._id}
 						>
 							<span className="text-2xl font-semibold text-gray-800">

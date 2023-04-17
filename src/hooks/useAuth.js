@@ -5,7 +5,7 @@ import AuthContext from "~/components/auth/AuthContext";
 import { error } from "~/utils/onError";
 import { success } from "~/utils/onSuccess";
 
-export const useLogin = () => {
+export const useLogin = (setConnecting) => {
 	const authCtx = useContext(AuthContext);
 
 	const expirationTime = new Date(new Date().getTime() + 60 * 60 * 24000); // 24 hours
@@ -16,6 +16,7 @@ export const useLogin = () => {
 			window.location.href = "/";
 		},
 		onError: (data) => {
+			setConnecting(false);
 			error(data);
 		},
 	});

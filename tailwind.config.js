@@ -18,6 +18,7 @@ module.exports = {
 			lg: { max: "1400px" },
 			md: { max: "1064px" },
 			sm: { max: "639px" },
+			vsm: { max: "400px" },
 		},
 		colors: {
 			blue: "#1fb6ff",

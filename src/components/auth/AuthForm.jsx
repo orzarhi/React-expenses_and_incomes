@@ -4,13 +4,16 @@ import * as toastMessage from "~/utils/notification/index";
 
 export const AuthForm = () => {
 	const [registerForm, setRegisterForm] = useState(true);
+	const [connecting, setConnecting] = useState(false);
 
 	const fullNameInputRef = useRef();
 	const emailInputRef = useRef();
 	const passwordInputRef = useRef();
 	const confirmPasswordInputRef = useRef();
 
-	const { mutate: login } = useLogin();
+	const buttonState = connecting ? "מתחבר..." : "התחבר";
+
+	const { mutate: login } = useLogin(setConnecting);
 	const { mutate: register } = useRegister();
 
 	const clearInputs = () => {
@@ -34,7 +37,7 @@ export const AuthForm = () => {
 					toastMessage.info("נא למלא את כל השדות.");
 					return;
 				}
-
+				setConnecting(true);
 				const user = { email, password };
 				login(user);
 			} else {
@@ -147,16 +150,7 @@ export const AuthForm = () => {
 						</div>
 					)}
 
-					{registerForm ? (
-						<div className="grid w-2/5 p-2 justify-strat xl:w-full sm:w-full">
-							<span
-								className="cursor-pointer sm:text-base"
-								onClick={() => setRegisterForm(!registerForm)}
-							>
-								לא קיים משתמש? מוזמנ/ת להרשם.
-							</span>
-						</div>
-					) : (
+					{!registerForm ? (
 						<div className="grid w-2/5 p-2 justify-strat sm:w-full">
 							<span
 								className="cursor-pointer sm:text-base"
@@ -165,13 +159,29 @@ export const AuthForm = () => {
 								להתחברות
 							</span>
 						</div>
+					) : (
+						<div className="grid w-2/5 p-2 justify-strat xl:w-full sm:w-full">
+							<span
+								className="cursor-pointer sm:text-base"
+								onClick={() => setRegisterForm(!registerForm)}
+							>
+								לא קיים משתמש? מוזמנ/ת להרשם.
+							</span>
+						</div>
 					)}
-
-					<div className="mt-6 bg-red-lite rounded-xl">
-						<button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-							{registerForm ? "התחבר" : "הרשמה"}
-						</button>
-					</div>
+					{!registerForm ? (
+						<div className="mt-6 bg-red-lite rounded-xl">
+							<button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+								הרשמה
+							</button>
+						</div>
+					) : (
+						<div className="mt-6 bg-red-lite rounded-xl">
+							<button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+								{buttonState}
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
 		</form>
