@@ -45,12 +45,12 @@ export const ChartBar = ({ expenses, incomes }) => {
 			{
 				name: "הוצאות",
 				data: chartPointsExpenses?.map((d) => d.value),
-				color: "#9d174dcc",
+				color: "#D21312",
 			},
 			{
 				name: "הכנסות",
 				data: chartPointsIncomes?.map((d) => d.value),
-				color: "#41644A",
+				color: "#5F8D4E",
 			},
 		],
 
