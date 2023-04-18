@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAddExpense, useUpdateExpense } from "~/hooks/useExpense";
 import { currentDate } from "~/utils/currentDate";
 import { formatDate } from "~/utils/formatDate";
@@ -6,6 +6,8 @@ import * as toastMessage from "~/utils/notification/index";
 
 export const Form = (props) => {
 	const { setOpen, open, refetch, data, title, expenseId, userId } = props;
+
+	const [changeForm, setChangeForm] = useState(false);
 
 	const currentExpense = data?.find((expense) => expense?._id === expenseId);
 
@@ -54,7 +56,7 @@ export const Form = (props) => {
 					price,
 					date,
 				};
-
+				setChangeForm(true);
 				addMutateExpense(addExpense);
 			} else if (title === "update") {
 				const updateExpense = {
@@ -63,6 +65,7 @@ export const Form = (props) => {
 					price,
 					date,
 				};
+				setChangeForm(true);
 				updateMutateExpense(updateExpense);
 			}
 		} catch (err) {
@@ -104,9 +107,20 @@ export const Form = (props) => {
 				ref={dateInputRef}
 				max={currentDate()}
 			/>
-			<button className="w-full h-10 text-lg text-white rounded-md bg-red-lite">
-				{title === "add" ? "הוספה" : "עדכון"}
-			</button>
+			{!changeForm ? (
+				<button className="w-full h-10 text-lg text-white rounded-md bg-red-lite">
+					{title === "add" ? "הוספה" : "עדכון"}
+				</button>
+			) : (
+				<button
+					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${
+						changeForm ? "bg-gray-dark" : "bg-red-lite"
+					} `}
+					disabled={changeForm}
+				>
+					{title === "add" ? "מוסיף..." : "מעדכן..."}
+				</button>
+			)}
 		</form>
 	);
 };
