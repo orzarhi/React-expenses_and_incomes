@@ -8,7 +8,7 @@ const token = tokenStorage.get();
 // 	: import.meta.env.VITE_PROD;
 
 export default axios.create({
-	baseURL: import.meta.env.VITE_PROD,
+	baseURL: `${import.meta.env.VITE_PROD}`,
 	headers: {
 		"Content-type": "application/json",
 		token,
