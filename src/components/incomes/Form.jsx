@@ -115,7 +115,7 @@ export const Form = (props) => {
 			) : (
 				<button
 					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${
-						changeForm ? "bg-gray-dark" : "bg-red-lite"
+						changeForm ? "bg-red-lite/60" : "bg-red-lite"
 					} `}
 					disabled={changeForm}
 				>
