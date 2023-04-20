@@ -32,12 +32,22 @@ export const useActivationMail = () =>
 		},
 	});
 
-export const useRegister = () =>
+export const useRegister = (
+	setOpen,
+	open,
+	clearInputs,
+	setRegisterForm,
+	setRegistered
+) =>
 	useMutation(auth.register, {
 		onSuccess: async (data) => {
 			success(data);
+			setOpen({ ...open, popUp: true });
+			clearInputs();
+			setRegisterForm(true);
 		},
 		onError: (data) => {
 			error(data);
+			setRegistered(false);
 		},
 	});

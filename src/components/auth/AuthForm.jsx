@@ -7,6 +7,7 @@ import { PopUp } from "../ui/PopUp";
 export const AuthForm = () => {
 	const [registerForm, setRegisterForm] = useState(true);
 	const [connecting, setConnecting] = useState(false);
+	const [registered, setRegistered] = useState(false);
 
 	const [open, setOpen] = useState({
 		action: false,
@@ -18,15 +19,21 @@ export const AuthForm = () => {
 	const passwordInputRef = useRef();
 	const confirmPasswordInputRef = useRef();
 
-	const { mutate: login } = useLogin(setConnecting);
-	const { mutate: register } = useRegister();
-
 	const clearInputs = () => {
 		fullNameInputRef.current.value = "";
 		emailInputRef.current.value = "";
 		passwordInputRef.current.value = "";
 		confirmPasswordInputRef.current.value = "";
 	};
+
+	const { mutate: login } = useLogin(setConnecting);
+	const { mutate: register } = useRegister(
+		setOpen,
+		open,
+		clearInputs,
+		setRegisterForm,
+		setRegistered
+	);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -60,11 +67,9 @@ export const AuthForm = () => {
 					toastMessage.error("סיסמא צריכה להכיל מינימום 7 תווים.");
 					return;
 				}
+				setRegistered(true);
 				const user = { fullName, email, password, confirmPassword };
 				register(user);
-				clearInputs();
-				setRegisterForm(true);
-				setOpen({ ...open, popUp: true });
 			}
 		} catch (err) {
 			const error = err?.response?.data?.message;
@@ -183,8 +188,19 @@ export const AuthForm = () => {
 							)}
 							{!registerForm ? (
 								<div className="mt-6 bg-red-lite rounded-xl">
-									<button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-										הרשמה
+									<button
+										className={`w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md bg-red-lite ${
+											registered
+												? "bg-red-lite/60"
+												: "bg-red-lite"
+										}`}
+										disabled={registered}
+									>
+										{registered ? (
+											<LoadingButton />
+										) : (
+											"הרשמה"
+										)}
 									</button>
 								</div>
 							) : (
@@ -211,14 +227,12 @@ export const AuthForm = () => {
 			) : (
 				<PopUp setOpen={setOpen} open={open}>
 					<div className="flex flex-wrap justify-center p-3 m-4 gap-y-3 ">
-						<span className="text-xl font-bold sm:text-base">
+						<span className="text-xl font-bold sm:text-lg">
 							אנחנו שנייה מלהתחיל.
 						</span>
-						<span className="text-lg sm:text-base">
-							ברגעים אלו ממש נשלח אלייך מייל לאימות.
-						</span>
-						<span className="text-lg sm:text-base">
-							יותר אני לא מציק, מבטיח 🤣.
+						<span className="text-xl sm:text-lg">
+							ברגעים אלו ממש נשלח אלייך מייל לאימות. <br />
+							<span>וזהו, יותר אני לא מציק, מבטיח 🤣.</span>
 						</span>
 					</div>
 				</PopUp>
