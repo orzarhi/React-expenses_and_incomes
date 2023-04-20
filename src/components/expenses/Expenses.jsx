@@ -12,6 +12,7 @@ export const Expenses = () => {
 	const userId = authCtx.id;
 
 	const [sumExpenses, setSumExpenses] = useState(0);
+	const [searchInput, setSearchInput] = useState("");
 
 	const [open, setOpen] = useState({
 		action: false,
@@ -23,13 +24,17 @@ export const Expenses = () => {
 
 	const { data, isLoading, refetch } = useExpenses(userId);
 
+	const dataResults = data?.filter((d) =>
+		d?.name.toLowerCase().includes(searchInput.toLowerCase())
+	);
+
 	useEffect(() => {
 		setSumExpenses(
-			data
+			dataResults
 				?.map((d) => d.price)
 				.reduce((partialSum, a) => partialSum + a, 0)
 		);
-	}, [data]);
+	}, [dataResults]);
 
 	if (isLoading) return <Spinner />;
 
@@ -42,7 +47,7 @@ export const Expenses = () => {
 				</span>
 			</div>
 
-			{data?.length > 0 && (
+			{dataResults?.length > 0 && (
 				<div className="flex justify-center">
 					<span className="text-xl text-white">
 						סך הכל:
@@ -50,8 +55,15 @@ export const Expenses = () => {
 					</span>
 				</div>
 			)}
-
-			<div className="flex justify-start mr-10">
+			<div className="flex justify-center mt-5 ">
+				<input
+					className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
+					placeholder="חיפוש הוצאה..."
+					autoComplete="off"
+					onChange={({ target }) => setSearchInput(target.value)}
+				/>
+			</div>
+			<div className="flex justify-start mr-10 md:mt-5 sm:justify-center sm:mr-0">
 				<button
 					className="h-10 text-white rounded-lg bg-green w-52 xl:w-52 sm:w-5/6 sm:mt-5"
 					onClick={() =>
@@ -66,9 +78,9 @@ export const Expenses = () => {
 					הוספת הוצאה חדשה 👀
 				</button>
 			</div>
-			{data?.length > 0 ? (
+			{dataResults?.length > 0 ? (
 				<div className="grid justify-between grid-cols-4 gap-2 p-8 mt-10 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
-					{data.map((expense) => (
+					{dataResults.map((expense) => (
 						<div
 							className="w-4/5 max-w-sm p-6 m-3 text-center duration-300 border shadow-lg animate-[wiggle_2s_ease-in-out_infinite] hover:animate-[wiggle_0s_ease-in-out_infinite] hover:-translate-y-1 hover:scale-100 shadow-red-lite/60 bg-gray-light border-gray rounded-t-3xl hover:shadow-black xl:w-full lg:w-11/12"
 							key={expense._id}
@@ -120,7 +132,10 @@ export const Expenses = () => {
 			) : (
 				<div className="flex justify-center mt-8">
 					<span className="text-2xl text-red-lite sm:text-lg">
-						לא נמצאו הוצאות קיימות, זה הזמן להתחיל לבזבז.
+						לא נמצאו הוצאות קיימות
+						{data.length === 0 && (
+							<span>, זה הזמן להתחיל לבזבז.</span>
+						)}
 					</span>
 				</div>
 			)}
