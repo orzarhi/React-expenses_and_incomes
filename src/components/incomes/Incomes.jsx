@@ -81,7 +81,7 @@ export const Incomes = () => {
 									סכום: ₪{income.price.toFixed(2)}
 								</span>
 							</div>
-							<div className="flex items-center w-2/3 mt-4 text-gray-700">
+							<div className="flex items-center w-2/3 mt-4 text-gray-700 xl:w-4/5">
 								<span className="px-2 text-xl">
 									תאריך: {formatDate(income.date)}
 								</span>
