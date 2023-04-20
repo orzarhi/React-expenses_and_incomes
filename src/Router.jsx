@@ -10,11 +10,11 @@ import AuthContext from "./components/auth/AuthContext";
 
 export const Router = () => {
 	const authCtx = useContext(AuthContext);
-	const token = authCtx.token;
+	const isLoggedIn = authCtx.isLoggedIn;
 
 	return (
 		<Routes>
-			{token && (
+			{isLoggedIn && (
 				<>
 					<Route path="/" element={<Home />} exact />
 					<Route path="/expenses" element={<Expenses />} exact />
@@ -28,10 +28,7 @@ export const Router = () => {
 				exact
 			/>
 			<Route path="/auth" element={<AuthForm />} exact />
-			<Route
-				path="*"
-				element={<div> Not Found or You do not have permission.</div>}
-			/>
+			<Route path="*" element={<div> Not Found 404.</div>} />
 		</Routes>
 	);
 };

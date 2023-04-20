@@ -3,6 +3,7 @@ import { useAddExpense, useUpdateExpense } from "~/hooks/useExpense";
 import { currentDate } from "~/utils/currentDate";
 import { formatDate } from "~/utils/formatDate";
 import * as toastMessage from "~/utils/notification/index";
+import { LoadingButton } from "../ui/Spinner";
 
 export const Form = (props) => {
 	const { setOpen, open, refetch, data, title, expenseId, userId } = props;
@@ -118,7 +119,7 @@ export const Form = (props) => {
 					} `}
 					disabled={changeForm}
 				>
-					{title === "add" ? "מוסיף..." : "מעדכן..."}
+					<LoadingButton />
 				</button>
 			)}
 		</form>

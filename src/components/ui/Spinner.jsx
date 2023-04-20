@@ -1,5 +1,5 @@
 import React from "react";
-import { MoonLoader } from "react-spinners";
+import { ClipLoader, MoonLoader } from "react-spinners";
 
 export const Spinner = () => {
 	return (
@@ -7,4 +7,8 @@ export const Spinner = () => {
 			<MoonLoader color="#FDF4F5" />
 		</div>
 	);
+};
+
+export const LoadingButton = () => {
+	return <ClipLoader color="#191919" size={15} />;
 };
