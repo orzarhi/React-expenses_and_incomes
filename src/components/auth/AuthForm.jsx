@@ -189,7 +189,7 @@ export const AuthForm = () => {
 							{!registerForm ? (
 								<div className="mt-6 rounded-xl">
 									<button
-										className={`w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md bg-red-lite ${
+										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${
 											registered
 												? "bg-red-lite/60"
 												: "bg-red-lite"
@@ -206,7 +206,7 @@ export const AuthForm = () => {
 							) : (
 								<div className="mt-6 rounded-xl">
 									<button
-										className={`w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md bg-red-lite ${
+										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${
 											connecting
 												? "bg-red-lite/60"
 												: "bg-red-lite"
@@ -226,14 +226,22 @@ export const AuthForm = () => {
 				</form>
 			) : (
 				<PopUp setOpen={setOpen} open={open}>
-					<div className="flex flex-wrap justify-center p-3 m-4 gap-y-3 ">
-						<span className="text-xl font-bold sm:text-lg">
+					<div className="flex flex-wrap justify-center p-3 m-4  gap-y-3">
+						<span className="text-xl font-bold sm:text-lg ">
 							אנחנו שנייה מלהתחיל.
 						</span>
 						<span className="text-xl sm:text-lg">
 							ברגעים אלו ממש נשלח אלייך מייל לאימות. <br />
 							<span>וזהו, יותר אני לא מציק, מבטיח 🤣.</span>
 						</span>
+					</div>
+					<div className="flex items-center justify-center p-2">
+						<button
+							className="w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite"
+							onClick={() => setOpen({ ...open, popUp: false })}
+						>
+							סגור
+						</button>
 					</div>
 				</PopUp>
 			)}
