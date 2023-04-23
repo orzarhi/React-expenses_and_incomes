@@ -110,6 +110,7 @@ export const Form = () => {
 										className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-red-lite focus:ring-red-lite focus:outline-none focus:ring focus:ring-opacity-40"
 										ref={fullNameInputRef}
 										required
+										autoComplete="off"
 									/>
 								</div>
 							)}
@@ -127,6 +128,7 @@ export const Form = () => {
 									className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-red-lite focus:ring-red-lite focus:outline-none focus:ring focus:ring-opacity-40"
 									ref={emailInputRef}
 									required
+									autoComplete="off"
 								/>
 							</div>
 							<div className="mb-2">
