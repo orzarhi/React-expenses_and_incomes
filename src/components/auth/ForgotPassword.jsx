@@ -97,7 +97,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 			>
 				{successfullyVerified ?
 					<>
-						<span className="text-2xl sm:text-base">
+						<span className="text-2xl sm:text-base sm:font-bold">
 							החלפת סיסמא 🔐
 						</span>
 						<div className="w-full">
@@ -136,7 +136,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 					</>
 					:
 					<>
-						<span className="text-2xl sm:text-base">
+						<span className="text-2xl sm:text-base sm:font-bold">
 							לא נורא, זה קורה לכולנו.
 						</span>
 
