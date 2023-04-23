@@ -39,7 +39,7 @@ export const useActivationMail = () =>
 export const useLogin = (setConnecting) => {
 	const authCtx = useContext(AuthContext);
 
-	const expirationTime = new Date(new Date().getTime() + 60 * 60 * 24000); // 24 hours
+	const expirationTime = new Date(new Date().getTime() + 60 * 60 * 720000); // 30 days
 
 	return useMutation(authApi.login, {
 		onSuccess: (data) => {
@@ -80,12 +80,19 @@ export const useVerificationCode = (setSuccessfullyVerified) =>
 		},
 	});
 
-export const useChangePassword = (setOpen, open, clearInputs) =>
+export const useChangePassword = (
+	setOpen,
+	open,
+	clearInputs,
+	setSuccessfullyChanged
+) =>
 	useMutation(authApi.changePassword, {
 		onSuccess: (data) => {
 			success(data, setOpen, open, clearInputs);
+			setSuccessfullyChanged(true);
 		},
 		onError: (data) => {
 			error(data);
+			setSuccessfullyChanged(false);
 		},
 	});
