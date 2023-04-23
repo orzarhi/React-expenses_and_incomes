@@ -1,46 +1,13 @@
-import React, { useState } from "react";
+import { useRef } from "react";
 import ReactApexChart from "react-apexcharts";
+import { chartExpenses, chartIncomes } from "~/logic/chartPoints";
 
 export const ChartBar = ({ expenses, incomes }) => {
-	const chartPointsExpenses = [
-		{ label: "ינואר", value: 0 },
-		{ label: "פרואר", value: 0 },
-		{ label: "מרץ", value: 0 },
-		{ label: "אפריל", value: 0 },
-		{ label: "מאי", value: 0 },
-		{ label: "אוגוסט", value: 0 },
-		{ label: "יוני", value: 0 },
-		{ label: "יולי", value: 0 },
-		{ label: "ספטמבר", value: 0 },
-		{ label: "אוקטובר", value: 0 },
-		{ label: "נובמבר", value: 0 },
-		{ label: "דצמבר", value: 0 },
-	];
-	const chartPointsIncomes = [
-		{ label: "ינואר", value: 0 },
-		{ label: "פרואר", value: 0 },
-		{ label: "מרץ", value: 0 },
-		{ label: "אפריל", value: 0 },
-		{ label: "מאי", value: 0 },
-		{ label: "אוגוסט", value: 0 },
-		{ label: "יוני", value: 0 },
-		{ label: "יולי", value: 0 },
-		{ label: "ספטמבר", value: 0 },
-		{ label: "אוקטובר", value: 0 },
-		{ label: "נובמבר", value: 0 },
-		{ label: "דצמבר", value: 0 },
-	];
 
-	for (const expense of expenses) {
-		const expenseMonth = new Date(expense.date).getMonth();
-		chartPointsExpenses[expenseMonth].value += expense.price;
-	}
-	for (const income of incomes) {
-		const incomeMonth = new Date(income.date).getMonth();
-		chartPointsIncomes[incomeMonth].value += income.price;
-	}
+	const chartPointsExpenses = chartExpenses(expenses);
+	const chartPointsIncomes = chartIncomes(incomes);
 
-	const [state, setState] = useState({
+	const chart = useRef({
 		series: [
 			{
 				name: "הוצאות",
@@ -117,8 +84,8 @@ export const ChartBar = ({ expenses, incomes }) => {
 
 	return (
 		<ReactApexChart
-			options={state.options}
-			series={state.series}
+			options={chart?.current.options}
+			series={chart?.current.series}
 			type="bar"
 			height={350}
 		/>

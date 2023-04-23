@@ -7,7 +7,13 @@ export const success = (
 	refetch = () => {},
 	clearInputs = () => {}
 ) => {
-	setOpen({ ...open, popUp: false, action: false, modalDialog: false });
+	setOpen({
+		...open,
+		popUp: false,
+		action: false,
+		modalDialog: false,
+		forgotPassword: false,
+	});
 	toastMessage.success(data.message);
 	refetch();
 	clearInputs();

@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "../auth/AuthContext";
+import { AuthContext } from "../auth";
 import { useIncomes } from "~/hooks/useIncome";
 import { Spinner } from "../ui/Spinner";
 import { formatDate } from "~/utils/formatDate";
 import { Header } from "../Header";
 import { MdDeleteForever, MdModeEditOutline } from "react-icons/md";
 import { Actions } from "./Actions";
+import { FaSearchDollar } from "react-icons/fa";
 
 export const Incomes = () => {
 	const authCtx = useContext(AuthContext);
@@ -47,21 +48,26 @@ export const Incomes = () => {
 				</span>
 			</div>
 			{dataResults?.length > 0 && (
-				<div className="flex justify-center">
-					<span className="text-xl text-white">
-						סך הכל:{" "}
-						<span className="text-green"> ₪{sumIncomes}</span>
-					</span>
-				</div>
+				<>
+					<div className="flex justify-center">
+						<span className="text-xl text-white">
+							סך הכל:{" "}
+							<span className="text-green"> ₪{sumIncomes}</span>
+						</span>
+					</div>
+
+					<div className="flex justify-center mt-5 ">
+						<input
+							className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
+							placeholder="חיפוש הכנסה..."
+							autoComplete="off"
+							onChange={({ target }) => setSearchInput(target.value)}
+						/>
+						<FaSearchDollar className="relative left-5 top-1 text-white text-base" />
+
+					</div>
+				</>
 			)}
-			<div className="flex justify-center mt-5 ">
-				<input
-					className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
-					placeholder="חיפוש הכנסה..."
-					autoComplete="off"
-					onChange={({ target }) => setSearchInput(target.value)}
-				/>
-			</div>
 			<div className="flex justify-start mr-10 md:mt-5 sm:justify-center sm:mr-0">
 				<button
 					type="submit"

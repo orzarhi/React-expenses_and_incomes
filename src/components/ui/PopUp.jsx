@@ -7,7 +7,12 @@ export const PopUp = ({ children, setOpen }) => {
 				<div
 					className="absolute z-50 text-3xl font-bold text-black cursor-pointer right-2"
 					onClick={() => {
-						setOpen({ ...open, popUp: false, action: false });
+						setOpen({
+							...open,
+							popUp: false,
+							action: false,
+							forgotPassword: false,
+						});
 					}}
 				>
 					&times;

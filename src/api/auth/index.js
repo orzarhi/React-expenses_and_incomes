@@ -1,1 +1,8 @@
-export { register, login, getActivationMail } from "./auth";
+export {
+	register,
+	login,
+	getActivationMail,
+	forgotPassword,
+	verificationCode,
+	changePassword,
+} from "./auth";

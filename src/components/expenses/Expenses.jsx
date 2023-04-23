@@ -5,8 +5,8 @@ import { Spinner } from "~/components/ui/Spinner";
 import { useExpenses } from "~/hooks/useExpense";
 import { formatDate } from "~/utils/formatDate";
 import { Actions } from "./Actions";
-import AuthContext from "../auth/AuthContext";
-
+import { AuthContext } from "../auth";
+import { FaSearchDollar } from "react-icons/fa"
 export const Expenses = () => {
 	const authCtx = useContext(AuthContext);
 	const userId = authCtx.id;
@@ -48,21 +48,25 @@ export const Expenses = () => {
 			</div>
 
 			{dataResults?.length > 0 && (
-				<div className="flex justify-center">
-					<span className="text-xl text-white">
-						סך הכל:
-						<span className="text-red"> ₪{sumExpenses}</span>
-					</span>
-				</div>
+				<>
+					<div className="flex justify-center">
+						<span className="text-xl text-white">
+							סך הכל:
+							<span className="text-red"> ₪{sumExpenses}</span>
+						</span>
+					</div>
+					<div className="flex justify-center mt-5 ">
+						<input
+							className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
+							placeholder="חיפוש הוצאה..."
+							autoComplete="off"
+							onChange={({ target }) => setSearchInput(target.value)}
+
+						/>
+						<FaSearchDollar className="relative left-5 top-1 text-white text-base" />
+					</div>
+				</>
 			)}
-			<div className="flex justify-center mt-5 ">
-				<input
-					className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
-					placeholder="חיפוש הוצאה..."
-					autoComplete="off"
-					onChange={({ target }) => setSearchInput(target.value)}
-				/>
-			</div>
 			<div className="flex justify-start mr-10 md:mt-5 sm:justify-center sm:mr-0">
 				<button
 					className="h-10 text-white rounded-lg bg-green w-52 xl:w-52 sm:w-5/6 sm:mt-5"

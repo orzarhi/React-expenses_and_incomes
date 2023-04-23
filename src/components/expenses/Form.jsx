@@ -72,7 +72,7 @@ export const Form = (props) => {
 		} catch (err) {
 			const error = err?.response?.data?.message;
 			if (error) toastMessage.error(error);
-			else toastMessage.error("שגיאה: בעיית התחברות לשרת");
+			else toastMessage.error("משהו השתבש, נא לנסות שוב.");
 		}
 	};
 	return (
@@ -82,7 +82,7 @@ export const Form = (props) => {
 		>
 			{title === "add" ? (
 				<span className="text-2xl sm:text-base">
-					חבל, יכלת לחסוך את זה. 😜
+					חבל, יכלת לחסוך את זה 😜.
 				</span>
 			) : (
 				<span className="text-2xl">עריכת הוצאה</span>
@@ -114,9 +114,8 @@ export const Form = (props) => {
 				</button>
 			) : (
 				<button
-					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${
-						changeForm ? "bg-red-lite/60" : "bg-red-lite"
-					} `}
+					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${changeForm ? "bg-red-lite/60" : "bg-red-lite"
+						} `}
 					disabled={changeForm}
 				>
 					<LoadingButton />

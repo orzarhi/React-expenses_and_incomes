@@ -4,7 +4,7 @@ import { decodeToken } from "react-jwt";
 
 let logoutTimer;
 
-const AuthContext = React.createContext({
+export const AuthContext = React.createContext({
 	token: "",
 	id: "",
 	name: "",
@@ -87,5 +87,3 @@ export const AuthContextProvider = (props) => {
 		</AuthContext.Provider>
 	);
 };
-
-export default AuthContext;

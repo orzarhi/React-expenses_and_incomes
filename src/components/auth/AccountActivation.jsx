@@ -11,6 +11,6 @@ export const AccountActivation = () => {
 	} catch (err) {
 		const error = err?.response?.data?.message;
 		if (error) toastMessage.error(error);
-		else toastMessage.error("שגיאה: בעיית התחברות לשרת");
+		else toastMessage.error("משהו השתבש, נא לנסות שוב.");
 	}
 };

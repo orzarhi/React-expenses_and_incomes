@@ -1,17 +1,18 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLogin, useRegister } from "~/hooks/useAuth";
 import * as toastMessage from "~/utils/notification/index";
 import { LoadingButton } from "../ui/Spinner";
 import { PopUp } from "../ui/PopUp";
+import { ForgotPassword } from ".";
 
-export const AuthForm = () => {
+export const Form = () => {
 	const [registerForm, setRegisterForm] = useState(true);
 	const [connecting, setConnecting] = useState(false);
 	const [registered, setRegistered] = useState(false);
 
 	const [open, setOpen] = useState({
-		action: false,
 		popUp: false,
+		forgotPassword: false,
 	});
 
 	const fullNameInputRef = useRef();
@@ -25,6 +26,13 @@ export const AuthForm = () => {
 		passwordInputRef.current.value = "";
 		confirmPasswordInputRef.current.value = "";
 	};
+
+	useEffect(() => {
+		if (!open.forgotPassword) {
+			emailInputRef.current.value = "";
+			passwordInputRef.current.value = "";
+		}
+	}, [open.forgotPassword])
 
 	const { mutate: login } = useLogin(setConnecting);
 	const { mutate: register } = useRegister(
@@ -74,7 +82,7 @@ export const AuthForm = () => {
 		} catch (err) {
 			const error = err?.response?.data?.message;
 			if (error) toastMessage.error(error);
-			else toastMessage.error("שגיאה: בעיית התחברות לשרת");
+			else toastMessage.error("משהו השתבש, נא לנסות שוב.");
 		}
 	};
 
@@ -92,7 +100,7 @@ export const AuthForm = () => {
 								<div className="mb-2">
 									<label
 										htmlFor="fullName"
-										className="block text-sm font-semibold text-gray-800"
+										className="block text-sm font-semibold"
 									>
 										שם מלא
 									</label>
@@ -109,7 +117,7 @@ export const AuthForm = () => {
 							<div className="mb-2">
 								<label
 									htmlFor="email"
-									className="block text-sm font-semibold text-gray-800"
+									className="block text-sm font-semibold"
 								>
 									מייל
 								</label>
@@ -124,7 +132,7 @@ export const AuthForm = () => {
 							<div className="mb-2">
 								<label
 									htmlFor="password"
-									className="block text-sm font-semibold text-gray-800"
+									className="block text-sm font-semibold"
 								>
 									סיסמא
 								</label>
@@ -149,7 +157,7 @@ export const AuthForm = () => {
 								<div className="mb-2">
 									<label
 										htmlFor="password"
-										className="block text-sm font-semibold text-gray-800"
+										className="block text-sm font-semibold"
 									>
 										אימות סיסמא
 									</label>
@@ -175,25 +183,39 @@ export const AuthForm = () => {
 									</span>
 								</div>
 							) : (
-								<div className="grid w-2/5 p-2 justify-strat xl:w-full sm:w-full">
-									<span
-										className="cursor-pointer sm:text-base"
-										onClick={() =>
-											setRegisterForm(!registerForm)
-										}
-									>
-										לא קיים משתמש? מוזמנ/ת להרשם.
-									</span>
-								</div>
+								<>
+									<div className="flex w-full p-2 justify-between xl:w-full sm:w-full sm:p-0">
+										<span
+											className="cursor-pointer sm:text-base"
+											onClick={() =>
+												setRegisterForm(!registerForm)
+											}
+										>
+											לא קיים משתמש?
+										</span>
+
+										<span
+											className="cursor-pointer sm:text-base"
+											onClick={() =>
+												setOpen({
+													...open,
+													popUp: false,
+													forgotPassword: true,
+												})
+											}
+										>
+											איי.. הסיסמא 🤦‍♂️
+										</span>
+									</div>
+								</>
 							)}
 							{!registerForm ? (
 								<div className="mt-6 rounded-xl">
 									<button
-										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${
-											registered
-												? "bg-red-lite/60"
-												: "bg-red-lite"
-										}`}
+										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${registered
+											? "bg-red-lite/60"
+											: "bg-red-lite"
+											}`}
 										disabled={registered}
 									>
 										{registered ? (
@@ -206,11 +228,10 @@ export const AuthForm = () => {
 							) : (
 								<div className="mt-6 rounded-xl">
 									<button
-										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${
-											connecting
-												? "bg-red-lite/60"
-												: "bg-red-lite"
-										}`}
+										className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${connecting
+											? "bg-red-lite/60"
+											: "bg-red-lite"
+											}`}
 										disabled={connecting}
 									>
 										{connecting ? (
@@ -244,6 +265,9 @@ export const AuthForm = () => {
 						</button>
 					</div>
 				</PopUp>
+			)}
+			{open.forgotPassword && (
+				<ForgotPassword setOpen={setOpen} open={open} />
 			)}
 		</>
 	);

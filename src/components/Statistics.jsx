@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AuthContext from "./auth/AuthContext";
+import { AuthContext } from "./auth";
 import { useExpenses } from "~/hooks/useExpense";
 import { useIncomes } from "~/hooks/useIncome";
 import { Spinner } from "./ui/Spinner";
