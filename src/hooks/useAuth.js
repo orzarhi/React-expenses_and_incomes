@@ -39,7 +39,7 @@ export const useActivationMail = () =>
 export const useLogin = (setConnecting) => {
 	const authCtx = useContext(AuthContext);
 
-	const expirationTime = new Date(new Date().getTime() + 60 * 60 * 720000); // 30 days
+	const expirationTime = new Date(new Date().getTime() + 60 * 60 * 24000); // 24 hours
 
 	return useMutation(authApi.login, {
 		onSuccess: (data) => {
