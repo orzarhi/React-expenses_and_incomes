@@ -5,7 +5,7 @@ import { Spinner } from "~/components/ui/Spinner";
 import { useExpenses } from "~/hooks/useExpense";
 import { formatDate } from "~/utils/formatDate";
 import { Actions } from "./Actions";
-import { AuthContext } from "../auth";
+import { AuthContext } from "../";
 import { FaSearchDollar } from "react-icons/fa"
 export const Expenses = () => {
 	const authCtx = useContext(AuthContext);

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useMutation } from "react-query";
 import * as authApi from "~/api/auth";
-import { AuthContext } from "~/components/auth";
+import { AuthContext } from "~/components";
 import { error } from "~/utils/onError";
 import { success } from "~/utils/onSuccess";
 
@@ -80,19 +80,12 @@ export const useVerificationCode = (setSuccessfullyVerified) =>
 		},
 	});
 
-export const useChangePassword = (
-	setOpen,
-	open,
-	clearInputs,
-	setSuccessfullyChanged
-) =>
+export const useChangePassword = (setOpen, open, clearInputs) =>
 	useMutation(authApi.changePassword, {
 		onSuccess: (data) => {
 			success(data, setOpen, open, clearInputs);
-			setSuccessfullyChanged(true);
 		},
 		onError: (data) => {
 			error(data);
-			setSuccessfullyChanged(false);
 		},
 	});

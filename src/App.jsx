@@ -2,7 +2,7 @@ import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ToastContainer } from "react-toastify";
 import { queryClient } from "./react-query/queryClient";
-import { AuthContext } from "./components/auth";
+import { AuthContext } from "./components";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Router } from "./Router";

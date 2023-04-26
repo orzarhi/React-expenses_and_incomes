@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useAddIncome, useUpdateIncome } from "~/hooks/useIncome";
 import { currentDate } from "~/utils/currentDate";
 import { formatDate } from "~/utils/formatDate";
-import * as toastMessage from "~/utils/notification/index";
+import * as toastMessage from "~/utils/notification";
 import { LoadingButton } from "../ui/Spinner";
 
 export const Form = (props) => {
@@ -115,9 +115,8 @@ export const Form = (props) => {
 				</button>
 			) : (
 				<button
-					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${
-						changeForm ? "bg-red-lite/60" : "bg-red-lite"
-					} `}
+					className={`w-full h-10 text-lg text-white rounded-md bg-red-lite ${changeForm ? "bg-red-lite/60" : "bg-red-lite"
+						} `}
 					disabled={changeForm}
 				>
 					<LoadingButton />

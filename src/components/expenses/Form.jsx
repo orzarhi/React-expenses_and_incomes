@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useAddExpense, useUpdateExpense } from "~/hooks/useExpense";
 import { currentDate } from "~/utils/currentDate";
 import { formatDate } from "~/utils/formatDate";
-import * as toastMessage from "~/utils/notification/index";
+import * as toastMessage from "~/utils/notification";
 import { LoadingButton } from "../ui/Spinner";
 
 export const Form = (props) => {

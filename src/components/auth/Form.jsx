@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLogin, useRegister } from "~/hooks/useAuth";
-import * as toastMessage from "~/utils/notification/index";
+import * as toastMessage from "~/utils/notification";
 import { LoadingButton } from "../ui/Spinner";
 import { PopUp } from "../ui/PopUp";
-import { ForgotPassword } from ".";
+import { ForgotPassword } from "./ForgotPassword";
 
 export const Form = () => {
 	const [registerForm, setRegisterForm] = useState(true);

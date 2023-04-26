@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useActivationMail } from "~/hooks/useAuth";
-import * as toastMessage from "~/utils/notification/index";
+import * as toastMessage from "~/utils/notification";
 
 export const AccountActivation = () => {
 	const { mutate: activationMail } = useActivationMail();

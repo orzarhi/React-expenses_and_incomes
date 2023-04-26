@@ -1,4 +1,4 @@
-import * as toastMessage from "./notification/index";
+import * as toastMessage from "./notification";
 
 export const success = (
 	data,

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useChangePassword, useForgotPassword, useVerificationCode } from "~/hooks/useAuth";
-import * as toastMessage from "~/utils/notification/index";
+import * as toastMessage from "~/utils/notification";
 import { PopUp } from "../ui/PopUp";
 
 export const ForgotPassword = ({ setOpen, open }) => {
@@ -178,7 +178,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 						</div>
 					</>
 				}
-				<div className="flex items-center justify-center p-2">
+				<div className="w-full">
 					{!showVerificationCode ? (
 						<button className="w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite">
 							שלח לי אימות

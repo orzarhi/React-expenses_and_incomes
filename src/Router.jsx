@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Expenses } from "./components/expenses";
-import { Home } from "./components/Home";
-import { Incomes } from "./components/incomes";
-import { Statistics } from "./components/Statistics";
-import * as auth from "./components/auth";
+
+import { NotFound, Home, Statistics, Incomes, Expenses, AccountActivation, Form, AuthContext } from "./components";
 
 export const Router = () => {
-	const authCtx = useContext(auth.AuthContext);
+	const authCtx = useContext(AuthContext);
 	const isLoggedIn = authCtx.isLoggedIn;
 
 	return (
@@ -22,16 +19,12 @@ export const Router = () => {
 			)}
 			<Route
 				path="/user/verify-email/:emailToken"
-				element={<auth.AccountActivation />}
+				element={<AccountActivation />}
 				exact
 			/>
-			{/* <Route
-				path="/user/forgot-password/:forgotPasswordToken"
-				element={<auth.ForgotPassword />}
-				exact
-			/> */}
-			<Route path="/auth" element={<auth.Form />} exact />
-			<Route path="*" element={<div> Not Found 404.</div>} />
+
+			<Route path="/auth" element={<Form />} exact />
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);
 };
