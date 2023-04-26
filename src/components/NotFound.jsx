@@ -15,12 +15,12 @@ export const NotFound = () => {
     }, [timer]);
 
     return (
-        <div className="flex justify-center items-center flex-col gap-4 mt-20 p-12 text-white text-4xl sm:text-lg">
-            <span className="block text-center text-3xl sm:text-2xl">
+        <div className="flex flex-col items-center justify-center gap-4 p-12 mt-20 text-4xl text-white sm:text-lg">
+            <span className="block text-3xl text-center sm:text-2xl">
                 אופס... <span className="text-red">404</span>
             </span>
             <span>
-                את/ה מעובר לבית בעוד {timer} שניות 🏡.
+                את/ה מועבר לבית בעוד {timer} שניות 🏡.
             </span>
         </div>
     );
