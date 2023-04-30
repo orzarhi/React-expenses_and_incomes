@@ -58,12 +58,12 @@ export const Incomes = () => {
 			)}
 			{data?.length > 0 && <div className="flex justify-center mt-5 ">
 				<input
-					className="w-64 rounded-md bg-black  text-white bg-transparent border placeholder:text-center"
+					className="w-64 text-white bg-transparent bg-black border rounded-md placeholder:text-center"
 					placeholder="חיפוש הכנסה..."
 					autoComplete="off"
 					onChange={({ target }) => setSearchInput(target.value)}
 				/>
-				<FaSearchDollar className="relative left-5 top-1 text-white text-base" />
+				<FaSearchDollar className="relative text-base text-white left-5 top-1" />
 
 			</div>}
 			<div className="flex justify-start mr-10 md:mt-5 sm:justify-center sm:mr-0">
@@ -82,8 +82,8 @@ export const Incomes = () => {
 					הוספת הכנסה חדשה 🎉
 				</button>
 			</div>
-			<div className="flex justify-start mr-10 mt-5 md:mt-5 sm:justify-center sm:mr-0">
-				<input type="month" className="bg-gray-light/80 shadow-md rounded-lg shadow-white/40" onChange={({ target }) => setMonth(target.value)} />
+			<div className="flex justify-start mt-5 mr-10 md:mt-5 sm:justify-center sm:mr-0">
+				<input type="month" placeholder="הצגה לפי חודש" className="rounded-lg shadow-md bg-gray-light/80 shadow-white/40" onChange={({ target }) => setMonth(target.value)} />
 			</div>
 			{dataResults?.length > 0 ? (
 				<div className="grid justify-between grid-cols-4 gap-2 p-8 mt-10 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">

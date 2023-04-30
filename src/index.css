@@ -17,3 +17,14 @@ body {
 ::-webkit-scrollbar-thumb {
 	background-color: #9d174dcc;
 }
+input[type="month"]::before {
+	content: attr(placeholder) !important;
+	color: #525252;
+	width: 100%;
+}
+
+input[type="month"]:focus::before,
+input[type="month"]:active::before {
+	content: "";
+	width: 0%;
+}
