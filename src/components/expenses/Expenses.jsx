@@ -1,18 +1,20 @@
 import { useContext, useEffect, useState } from "react";
+import { FaSearchDollar } from "react-icons/fa";
 import { MdDeleteForever, MdModeEditOutline } from "react-icons/md";
 import { Header } from "~/components/Header";
 import { Spinner } from "~/components/ui/Spinner";
 import { useExpenses } from "~/hooks/useExpense";
 import { formatDate } from "~/utils/formatDate";
-import { Actions } from "./Actions";
 import { AuthContext } from "../";
-import { FaSearchDollar } from "react-icons/fa"
+import { Actions } from "./Actions";
+
 export const Expenses = () => {
 	const authCtx = useContext(AuthContext);
 	const userId = authCtx.id;
 
 	const [sumExpenses, setSumExpenses] = useState(0);
 	const [searchInput, setSearchInput] = useState("");
+	const [month, setMonth] = useState("");
 
 	const [open, setOpen] = useState({
 		action: false,
@@ -25,7 +27,7 @@ export const Expenses = () => {
 	const { data, isLoading, refetch } = useExpenses(userId);
 
 	const dataResults = data?.filter((d) =>
-		d?.name.toLowerCase().includes(searchInput.toLowerCase())
+		d?.name.toLowerCase().includes(searchInput.toLowerCase()) && d?.date.slice(5, 7).includes(month.slice(5, 7))
 	);
 
 	useEffect(() => {
@@ -79,6 +81,9 @@ export const Expenses = () => {
 				>
 					הוספת הוצאה חדשה 👀
 				</button>
+			</div>
+			<div className="flex justify-start mr-10 mt-5 md:mt-5 sm:justify-center sm:mr-0">
+				<input type="month" className="bg-gray-light/80 shadow-md rounded-lg shadow-white/40" onChange={({ target }) => setMonth(target.value)} />
 			</div>
 			{dataResults?.length > 0 ? (
 				<div className="grid justify-between grid-cols-4 gap-2 p-8 mt-10 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
