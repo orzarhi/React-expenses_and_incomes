@@ -83,7 +83,7 @@ export const Expenses = () => {
 				</button>
 			</div>
 			<div className="flex justify-start mt-5 mr-10 md:mt-5 sm:justify-center sm:mr-0">
-				<input type="month" placeholder="הצגה לפי חודש" className="w-48 rounded-lg shadow-md bg-gray-light/80 shadow-white/40" onChange={({ target }) => setMonth(target.value)} />
+				<input type="month" placeholder="לפי חודש" className="rounded-lg shadow-md w-52 bg-gray-light/80 shadow-white/40" onChange={({ target }) => setMonth(target.value)} />
 			</div>
 			{dataResults?.length > 0 ? (
 				<div className="grid justify-between grid-cols-4 gap-2 p-8 mt-10 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1">
