@@ -19,12 +19,12 @@ body {
 }
 input[type="month"]::before {
 	content: attr(placeholder) !important;
-	color: #525252;
-	width: 100%;
+	color: #525252eb;
+	width: 40%;
 }
-
+/* 
 input[type="month"]:focus::before,
 input[type="month"]:active::before {
-	content: "";
+	content: "ddd";
 	width: 0%;
-}
+} */

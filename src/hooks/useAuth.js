@@ -54,6 +54,7 @@ export const useLogin = (setConnecting) => {
 };
 
 export const useForgotPassword = (
+	setClickButton,
 	setVerificationCode,
 	clearInputs,
 	setCurrentRealCode
@@ -63,29 +64,35 @@ export const useForgotPassword = (
 			setCurrentRealCode(data.code);
 			success(data, clearInputs);
 			setVerificationCode(true);
+			setClickButton(false);
 		},
 		onError: (data) => {
+			setClickButton(false);
 			error(data);
 		},
 	});
 
-export const useVerificationCode = (setSuccessfullyVerified) =>
+export const useVerificationCode = (setClickButton, setSuccessfullyVerified) =>
 	useMutation(authApi.verificationCode, {
 		onSuccess: (data) => {
 			success(data);
 			setSuccessfullyVerified(true);
+			setClickButton(false);
 		},
 		onError: (data) => {
 			error(data);
+			setClickButton(false);
 		},
 	});
 
-export const useChangePassword = (setOpen, open, clearInputs) =>
+export const useChangePassword = (setClickButton, setOpen, open, clearInputs) =>
 	useMutation(authApi.changePassword, {
 		onSuccess: (data) => {
 			success(data, setOpen, open, clearInputs);
+			setClickButton(false);
 		},
 		onError: (data) => {
 			error(data);
+			setClickButton(false);
 		},
 	});

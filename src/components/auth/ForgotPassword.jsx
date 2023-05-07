@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useChangePassword, useForgotPassword, useVerificationCode } from "~/hooks/useAuth";
 import * as toastMessage from "~/utils/notification";
 import { PopUp } from "../ui/PopUp";
+import { LoadingButton } from "../ui/Spinner";
 
 export const ForgotPassword = ({ setOpen, open }) => {
 	const [showVerificationCode, setShowVerificationCode] = useState(false);
 	const [successfullyVerified, setSuccessfullyVerified] = useState(false);
+	const [clickButton, setClickButton] = useState(false);
+	console.log("🚀  clickButton:", clickButton)
 	const [currentRealCode, setCurrentRealCode] = useState("");
 	const [userEmail, setUserEmail] = useState("");
 
@@ -32,9 +35,9 @@ export const ForgotPassword = ({ setOpen, open }) => {
 		}
 	}, [successfullyVerified])
 
-	const { mutate: mutateChangePassword } = useChangePassword(setOpen, open, clearPasswordInputs);
-	const { mutate: mutateForgotPassword } = useForgotPassword(setShowVerificationCode, clearInputs, setCurrentRealCode);
-	const { mutate: mutateVerificationCode } = useVerificationCode(setSuccessfullyVerified);
+	const { mutate: mutateForgotPassword } = useForgotPassword(setClickButton, setShowVerificationCode, clearInputs, setCurrentRealCode);
+	const { mutate: mutateChangePassword } = useChangePassword(setClickButton, setOpen, open, clearPasswordInputs);
+	const { mutate: mutateVerificationCode } = useVerificationCode(setClickButton, setSuccessfullyVerified);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -53,7 +56,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 					toastMessage.info("נא למלא את השדה.");
 					return;
 				}
-
+				setClickButton(true);
 				const user = { email };
 				mutateForgotPassword(user);
 			}
@@ -67,6 +70,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 					toastMessage.error("הסיסמאות אינן תאומות.");
 					return;
 				}
+				setClickButton(true);
 				const changedPassword = { password, confrimPassword, email: userEmail };
 				mutateChangePassword(changedPassword);
 			}
@@ -79,6 +83,7 @@ export const ForgotPassword = ({ setOpen, open }) => {
 					toastMessage.error("קוד האימות אינו תואם.");
 					return;
 				}
+				setClickButton(true);
 				const verificationCode = { code, currentRealCode };
 				mutateVerificationCode(verificationCode)
 			}
@@ -180,12 +185,28 @@ export const ForgotPassword = ({ setOpen, open }) => {
 				}
 				<div className="w-full">
 					{!showVerificationCode ? (
-						<button className="w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite">
-							שלח לי אימות
+						<button className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${clickButton
+							? "bg-red-lite/60"
+							: "bg-red-lite"
+							}`}
+							disabled={clickButton}>
+							{clickButton ? (
+								<LoadingButton />
+							) : (
+								"שלח לי אימות"
+							)}
 						</button>
 					) : (
-						<button className="w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite">
-							{textBtn}
+						<button className={`w-full px-4 py-2 tracking-wide text-white transition-colors  rounded-md bg-red-lite ${clickButton
+							? "bg-red-lite/60"
+							: "bg-red-lite"
+							}`}
+							disabled={clickButton}>
+							{clickButton ? (
+								<LoadingButton />
+							) : (
+								textBtn
+							)}
 						</button>
 					)}
 				</div>
