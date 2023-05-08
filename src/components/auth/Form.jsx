@@ -94,8 +94,8 @@ export const Form = () => {
 			{!open.popUp ? (
 				<form onSubmit={handleSubmit} className="flex justify-center">
 					<div className="relative flex flex-col justify-center w-2/5 min-h-screen p-4 overflow-hidden lg:w-4/5 sm:w-full">
-						<div className="flex justify-center -mt-10 sm:mt-10">
-							<img className="w-3/5 mt-5 xl:w-4/5 lg:w-2/5 md:w-9/12" src={logo} />
+						<div className="flex justify-center -mt-10 sm:mt-0">
+							<img className="w-3/5 mt-5 xl:w-4/5 lg:w-2/5 md:w-9/12 sm:w-full" src={logo} />
 						</div>
 						<div className="w-full mt-2 p-6 m-auto bg-white border shadow-lg shadow-gray border-gray rounded-xl hover:shadow-gray-dark lg:max-w-xl">
 							<span className="flex justify-center text-3xl font-semibold text-center">
