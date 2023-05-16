@@ -44,6 +44,7 @@ export const useLogin = (setConnecting) => {
 	return useMutation(authApi.login, {
 		onSuccess: (data) => {
 			authCtx.login(data, expirationTime);
+			setConnecting(false);
 			window.location.href = "/";
 		},
 		onError: (data) => {

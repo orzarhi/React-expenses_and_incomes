@@ -6,17 +6,27 @@ import { AuthContext } from "./components";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Router } from "./Router";
+import * as toastMessage from "./utils/notification";
 
 export const App = () => {
 	const authCtx = useContext(AuthContext);
 	const token = authCtx.token;
+	const isLoggedIn = authCtx.isLoggedIn;
 
 	const navigate = useNavigate();
-	//t
+
 	useEffect(() => {
 		if (token) return;
 		navigate("/auth");
 	}, [token]);
+
+
+	useEffect(() => {
+		if (!isLoggedIn && location.pathname !== "/auth") {
+			navigate("/auth");
+			toastMessage.info("נא להתחבר מחדש.");
+		}
+	}, []);
 
 	return (
 		<QueryClientProvider client={queryClient}>
