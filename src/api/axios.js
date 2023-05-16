@@ -8,7 +8,7 @@ const baseURL = import.meta.env.DEV
 	: `${import.meta.env.VITE_PROD}`;
 
 export default axios.create({
-	baseURL: "https://server-expenses-and-incomes.onrender.com/api",
+	baseURL,
 	headers: {
 		"Content-type": "application/json",
 		token,
