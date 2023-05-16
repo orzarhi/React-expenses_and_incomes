@@ -1,9 +1,32 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from ".";
 
-export const Header = () => {
+export const Header = ({ }) => {
 	const authCtx = useContext(AuthContext);
+
+	const location = useLocation();
+
+	const [click, setClick] = useState({
+		expenses: false,
+		incomes: false,
+		statistics: false,
+	})
+
+
+	useEffect(() => {
+		const path = location.pathname;
+
+		if (path === "/expenses") {
+			setClick({ ...click, expenses: true });
+		}
+		else if (path === "/incomes") {
+			setClick({ ...click, incomes: true });
+		}
+		else if (path === "/statistics") {
+			setClick({ ...click, statistics: true });
+		}
+	}, [])
 
 	return (
 		<header>
@@ -13,13 +36,13 @@ export const Header = () => {
 						<Link to="/">בית</Link>
 					</li>
 					<li>
-						<Link to="/expenses">הוצאות</Link>
+						<Link to="/expenses" className={`${click.expenses && "underline decoration-red-lite decoration-wavy"}`} >הוצאות</Link>
 					</li>
 					<li>
-						<Link to="/incomes">הכנסות</Link>
+						<Link to="/incomes" className={`${click.incomes && "underline decoration-red-lite decoration-wavy"}`}>הכנסות</Link>
 					</li>
 					<li>
-						<Link to="/statistics">מה הלאה?</Link>
+						<Link to="/statistics" className={`${click.statistics && "underline decoration-red-lite decoration-wavy"}`}>מה הלאה?</Link>
 					</li>
 					<li className="absolute left-0 ml-10 sm:ml-4">
 						<button onClick={() => authCtx.logout()}>יציאה</button>
