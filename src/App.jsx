@@ -12,7 +12,7 @@ export const App = () => {
 	const token = authCtx.token;
 
 	const navigate = useNavigate();
-
+	//t
 	useEffect(() => {
 		if (token) return;
 		navigate("/auth");
