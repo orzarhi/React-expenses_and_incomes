@@ -1,3 +1,3 @@
 
 
-https://expenses-and-incomes.netlify.app/auth
+https://expenses-incomes.life/auth
